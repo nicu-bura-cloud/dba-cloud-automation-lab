@@ -1,0 +1,19 @@
+---
+- hosts: dbserver
+  become: yes
+
+  tasks:
+
+    - name: Aggiorna pacchetti
+      apt:
+        update_cache: yes
+
+    - name: Installa PostgreSQL
+      apt:
+        name: postgresql
+        state: present
+
+    - name: Avvia PostgreSQL
+      service:
+        name: postgresql
+        state: started
